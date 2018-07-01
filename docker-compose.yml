@@ -1,0 +1,26 @@
+version: '2.1'
+services:
+  icinga2_client:
+    build: .
+    networks:
+      - mainnet
+    restart: on-failure:5
+    hostname: ${ICINGA2_CLIENT_HOSTNAME}
+    volumes:
+      - ./data/icinga/cache:/usr/local/var/cache/icinga2
+      - ./data/icinga/etc/icinga2:/usr/local/etc/icinga2
+      - ./data/icinga/lib/icinga2:/usr/local/var/lib/icinga2
+      - ./data/icinga/log/icinga2:/usr/local/var/log/icinga2
+      - ./data/icinga/spool:/var/spool/icinga2
+
+networks:
+  mainnet:
+    enable_ipv6: true
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.238.0/24
+        gateway: 172.16.238.1
+      - subnet: 2001:3984:3989::/64
+        gateway: 2001:3984:3989::1

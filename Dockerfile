@@ -55,14 +55,6 @@ ADD content/ /
 
 # Final fixes
 RUN true \
-    && mkdir -p /usr/local/var/cache/icinga2 \
-    && chown -R icinga:icinga /usr/local/var/cache/icinga2 \
-    && mkdir -p /usr/local/var/log/icinga2 \
-    && chown -R icinga:icinga /usr/local/var/log/icinga2 \
-    && mkdir -p /usr/local/var/run/icinga2 \
-    && chown -R icinga:icinga /usr/local/var/run/icinga2 \
-    && mkdir -p /usr/local/var/lib/icinga2 \
-    && chown -R icinga:icinga /usr/local/var/lib/icinga2 \
     && chmod +x /opt/start.sh \
     && chmod u+s,g+s \
         /bin/ping \
