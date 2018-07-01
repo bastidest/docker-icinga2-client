@@ -6,9 +6,11 @@ if [ ! "$(ls -A /usr/local/etc/icinga2)" ]; then
 
     echo "=> Setting up connection to master node"
     icinga2 node setup \
+        --cn $ICINGA2_CLIENT_HOSTNAME \
         --zone $ICINGA2_CLIENT_HOSTNAME \
-        --endpoint $ICINGA2_MASTER_FQDN \
+        --endpoint $ICINGA2_MASTER_FQDN,$ICINGA2_MASTER_FQDN,5665 \
         --parent_host $ICINGA2_MASTER_FQDN \
+        --parent_zone master \
         --ticket $ICINGA2_CLIENT_TICKET \
         --trustedcert /opt/master.crt \
         --accept-config \
