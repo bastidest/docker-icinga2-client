@@ -55,11 +55,11 @@ ADD content/ /
 
 # Final fixes
 RUN true \
+    && mv /usr/local/etc/icinga2/ /usr/local/etc/icinga2.dist \
     && chmod +x /opt/start.sh \
     && chmod u+s,g+s \
         /bin/ping \
         /bin/ping6 \
         /usr/lib/nagios/plugins/check_icmp 
 
-# Initialize and run Supervisor
 ENTRYPOINT ["/opt/start.sh"]

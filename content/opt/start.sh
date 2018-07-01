@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ ! "$(ls -A /usr/local/etc/icinga2)" ]; then
+	echo "=> Copying fresh config-files for /usr/local/etc/icinga2"
+	cp -r /usr/local/etc/icinga2.dist/* /usr/local/etc/icinga2/
+    #(cd /usr/local/etc/icinga2/conf.d && rm services.conf downtimes.conf notifications.conf groups.conf templates.conf commands.conf hosts.conf users.conf)
+fi
+
 mkdir -p /usr/local/var/cache/icinga2
 chown -R icinga:icinga /usr/local/var/cache/icinga2
 
