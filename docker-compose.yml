@@ -5,6 +5,8 @@ services:
     networks:
       - mainnet
     restart: on-failure:5
+    env_file:
+      - .env
     hostname: ${ICINGA2_CLIENT_HOSTNAME}
     volumes:
       - ./data/icinga/cache:/usr/local/var/cache/icinga2
@@ -12,6 +14,7 @@ services:
       - ./data/icinga/lib/icinga2:/usr/local/var/lib/icinga2
       - ./data/icinga/log/icinga2:/usr/local/var/log/icinga2
       - ./data/icinga/spool:/var/spool/icinga2
+      - ./master.crt:/opt/master.crt:ro
 
 networks:
   mainnet:
