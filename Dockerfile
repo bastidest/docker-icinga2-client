@@ -21,6 +21,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
           snmp \
           ssmtp \
           sudo \
+          wget \
           git \
      && apt-get clean \
      && rm -rf /var/lib/apt/lists/* 
@@ -50,6 +51,10 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         nagios-snmp-plugins \
         nagios-plugins-contrib \
      && apt-get clean
+
+RUN (cd /usr/lib/nagios/plugins\
+    && wget https://raw.githubusercontent.com/hugme/Nag_checks/master/check_linux_memory\
+    && chmod +x check_linux_memory )
 
 ADD content/ /
 
